@@ -2,15 +2,19 @@ import './App.css'
 import { Navbar } from './components'
 import { Home } from './pages'
 import { LayoutContainer } from './styled-components'
+import { Provider } from 'react-redux'
+import { store } from './redux'
 
 function App() {
 
   return (
     <>
-      <Navbar/>
-      <LayoutContainer>
-        <Home/>
-      </LayoutContainer>
+      <Provider store={store}>
+        <Navbar />
+        <LayoutContainer>
+          <Home />
+        </LayoutContainer>
+      </Provider>
     </>
   )
 }

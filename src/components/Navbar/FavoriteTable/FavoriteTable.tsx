@@ -1,15 +1,38 @@
 
+import { Person } from "@/models";
+import { removeFavorite } from "@/redux/states/favorite";
 import { AppStore } from "@/redux/store";
-import { DataGrid } from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
+import { Delete } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import { useDispatch, useSelector } from "react-redux";
 
 const FavoriteTable = () => {
-    //FOR CHECKBOX, Trabaja sonre el moedelo de <Person>
 
     const favoritePeople = useSelector((store: AppStore) => store.favorites);
-
+    const dispatch = useDispatch();
+    const handleClick = (person: Person) => {
+        dispatch(removeFavorite(person));
+        
+    };
     // COLUMNS CONFIGURATION
     const colums = [
+        {
+            field: 'actions',
+            type: 'actions',
+            sortable: false,
+            headerName: '',
+            width: 50,
+            renderCell: (params: GridRenderCellParams) => (
+                <>
+                    {
+                        <IconButton color="secondary" aria-label="favorites" component="label" onClick={() => handleClick(params.row)}>
+                            <Delete />
+                        </IconButton>
+                    }
+                </>
+            )
+        },
         {
             field: 'name',
             headerName: 'Name',

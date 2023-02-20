@@ -3,7 +3,7 @@ import { addFavorite } from "@/redux/states/favorite";
 import { AppStore } from "@/redux/store";
 import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 const PeopleTable = () => {
